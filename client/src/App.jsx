@@ -1,11 +1,15 @@
+import Header from "./components/Header/Header.jsx";
+import Home from "./pages/Home.jsx";
+
 import './App.css'
 
 function App() {
 
   return (
-    <div>
-        client
-    </div>
+    <>
+        <Header />
+        <Home />
+    </>
   )
 }
 
