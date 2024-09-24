@@ -1,22 +1,17 @@
-import express from 'express';
+const express = require('express');
+const sequelize = require('./models');
+const bookRoutes = require('./routes/bookRoutes');
 
 const app = express();
-
-app.get('/', (req, res) => {
-    res.send('index');
-})
-
-const port = 3002;
-
-app.listen(port, (err) => {
-    if (err) {
-        return console.log(err);
-    }
-
-    console.log(`Server running on port ${port}`);
-})
-
+const PORT = 3000;
 
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+app.use(bookRoutes);
+
+sequelize.authenticate()
+    .then(() => {
+        console.log('Database connected...');
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    })
+    .catch(err => console.log('Error: ' + err));
