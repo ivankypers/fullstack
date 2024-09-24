@@ -1,17 +1,19 @@
-const express = require('express');
-const sequelize = require('./models');
-const bookRoutes = require('./routes/bookRoutes');
+import express from 'express';
+import sequelize from './models/index.js';
+import bookRoutes from './routes/bookRoutes.js';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3002;
 
 app.use(express.json());
 
 app.use(bookRoutes);
 
-sequelize.authenticate()
-    .then(() => {
-        console.log('Database connected...');
-        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-    })
-    .catch(err => console.log('Error: ' + err));
+try {
+    await sequelize.authenticate();
+    console.log('Database connected...');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+} catch (err) {
+    console.error('Unable to connect to the database:', err);
+}
+   

@@ -1,7 +1,7 @@
-const sequelize = require('../config/database');
-const Author = require('./author');
-const Book = require('./book');
+import sequelize from '../config/database';
+import Author from './author';
+import Book from './book';
 
 sequelize.sync({ alter: true });
 
-module.exports = sequelize;
+export default sequelize;

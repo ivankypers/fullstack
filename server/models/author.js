@@ -12,4 +12,4 @@ const Author = sequelize.define('Author', {
     num_books: DataTypes.INTEGER
 });
 
-module.exports = Author;
+export default Author;

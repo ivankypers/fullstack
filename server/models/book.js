@@ -15,4 +15,4 @@ const Book = sequelize.define('Book', {
 
 Book.belongsTo(Author, { foreignKey: 'author_id' });
 
-module.exports = Book;
+export default Book;
